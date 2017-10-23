@@ -1,7 +1,7 @@
 #include <IRremote.h>
 
 // Constants
-#define BASE_COUNT 2
+#define BASE_COUNT 3
 #define BLUE_LASER 0
 #define RED_LASER 1
 #define DEBUG_MODE false
@@ -23,7 +23,7 @@ bool laserHit = false;
 
 // Store scores
 int scores[] = {0,0};
-decode_results results;
+decode_results result;
 
 // methods
 void setup() {
@@ -46,7 +46,7 @@ void initLeds() {
 
 void loop() {
   toggleSensors();
-  if (!laserHit && irrecvs[activeReceiver]->decode(&results)) {
+  if (!laserHit && irrecvs[activeReceiver]->decode(&result)) {
     recordHit(activeReceiver);
   }
 }
@@ -62,7 +62,7 @@ void toggleSensors() {
 
 int interval() {
   // generate random intervel between 500ms to 2500ms
-    return rand() % 2000 + 500;
+    return rand() % 2500 + 2500;
 }
 
 void updateReceiverState() {
@@ -86,7 +86,7 @@ void turnOnReceiver(int index) {
 }
 
 void recordHit(int index) {
-  unsigned int rawbuf_last = results.rawbuf[results.rawlen-1];
+  unsigned int rawbuf_last = result.rawbuf[result.rawlen-1];
   
   if(rawbuf_last < 10){
     scores[BLUE_LASER]++;
@@ -122,7 +122,7 @@ void printRawbufLast(unsigned int rawbuf_last) {
 
 void printHit(int index) {
   if(DEBUG_MODE) {
-    String logger1 = "hit index: " + String(index);
+    String logger1 = "hit index: " + String(index) + " value: " + String(result.value);
     Serial.println(logger1);
   }
 }
