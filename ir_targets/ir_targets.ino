@@ -124,8 +124,8 @@ void printRawbufLast(unsigned int rawbuf_last) {
 
 void printHit(int index) {
   if(DEBUG_MODE) {
-    String logger1 = "hit index: " + String(index) + " value: " + String(result.value);
-    Serial.println(logger1);
+    String logger = "hit index: " + String(index) + " value: " + String(result.value);
+    Serial.println(logger);
   }
 }
 
