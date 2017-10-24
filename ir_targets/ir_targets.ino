@@ -5,6 +5,8 @@
 #define BLUE_LASER 0
 #define RED_LASER 1
 #define DEBUG_MODE false
+#define MIN_DELAY 2500
+#define DELAY_CEIL 2500
 
 
 // Define all the devices as global variables
@@ -62,7 +64,7 @@ void toggleSensors() {
 
 int interval() {
   // generate random intervel between 500ms to 2500ms
-    return rand() % 2500 + 2500;
+    return (rand() % DELAY_CEIL) + MIN_DELAY;
 }
 
 void updateReceiverState() {
