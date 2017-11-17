@@ -5,14 +5,14 @@
 #define BLUE_LASER 0
 #define RED_LASER 1
 #define DEBUG_MODE false
-#define MIN_DELAY 2500
+#define MIN_DELAY 500
 #define DELAY_CEIL 2500
 
 
 // Define all the devices as global variables
 IRrecv *irrecvs[BASE_COUNT];
-int ledPins[] = {7,4,2};
-int receiverPins[] = {8,12,13};
+int ledPins[] = {2,7,4};
+int receiverPins[] = {13,8,12};
 
 // Define all time related variables
 unsigned long startMillis;
@@ -84,7 +84,7 @@ void turnOffReceiver(int index) {
 
 void turnOnReceiver(int index) {
   digitalWrite(ledPins[index], HIGH);
-  irrecvs[activeReceiver]->resume();
+  irrecvs[index]->resume();
 }
 
 void recordHit(int index) {
